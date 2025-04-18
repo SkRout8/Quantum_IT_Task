@@ -1,6 +1,5 @@
 
 const Schema = require('../Models/Schema')
-const jwt = require("jsonwebtoken");
 
 exports.Register = async (req, res) => {
     try {
