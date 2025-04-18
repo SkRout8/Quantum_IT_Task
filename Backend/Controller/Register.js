@@ -1,5 +1,7 @@
 
 const Schema = require('../Models/Schema')
+const jwt = require("jsonwebtoken");
+
 
 exports.Register = async (req, res) => {
     try {
@@ -21,6 +23,14 @@ exports.Register = async (req, res) => {
             password
         });
 
+  const payload = {
+            email: user.email,
+            id: user._id,
+        };
+
+        const token = jwt.sign(payload, process.env.JWT_SECRET, {
+            expiresIn: "24h",
+        });
         
         res.status(201).json({
             success: true,
